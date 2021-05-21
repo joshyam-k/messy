@@ -4,7 +4,7 @@ output: github_document
 
 # messy
 
-A package that attempts to remedy some of the difficulties of cleaning data composed of survey inputs. often times when trying to lump or clean up a categorical variable that was a survey input you'll come across things like "The United States", "the united states", or "THE UNITES STATES". It can be time consuming and frustrating to try to identify each capitalization variant and not all of us are `stringr` masters. All that `Messy` does is gives a nice way to automate the process of testing for all capitalization variants in a variable.
+A package that attempts to remedy some of the difficulties of cleaning data composed of survey inputs. Often times when trying to lump or clean up a categorical variable that was a survey input you'll come across things like "The United States", "the united states", or "THE UNITES STATES". It can be time consuming and frustrating to try to identify each capitalization variant and not all of us are `stringr` masters. All that `Messy` does is gives a nice way to automate the process of testing for all capitalization variants in a variable.
 
 The developmental version of the package can be installed through github using
 
