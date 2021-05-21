@@ -56,8 +56,8 @@ messy_string <- function(string) {
 
   # remove any duplicates
 
-  final_phrases <- rbind(first_letter_cap, full_word_cap) %>%
-    dplyr::distinct(.keep_all = T)
+  final_phrases <- dplyr::distinct(rbind(first_letter_cap, full_word_cap), .keep_all = T)
+
 
   # turn our dataframe into a vector where each object is a string
 
