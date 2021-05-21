@@ -21,7 +21,7 @@ messy_string <- function(string) {
 
   n <- length(words)
 
-  binary_tibble <- tibble::as_tibble(binary_strings(n), .name_repair = "unique")
+  binary_tibble <- as.data.frame(binary_strings(n), .name_repair = "unique")
 
   # create placeholder tibbles to be filled with modified strings
 
