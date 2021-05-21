@@ -1,4 +1,4 @@
-Package: notneatnames
+Package: messy
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
@@ -13,10 +13,9 @@ License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.0.0
+RoxygenNote: 7.1.1
 Imports:
   tibble,
   stringr,
   dplyr,
   tidyr
-  
