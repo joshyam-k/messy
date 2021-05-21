@@ -15,3 +15,7 @@ A vector of strings
 \description{
 Generate a vector of capitalization variants of a string
 }
+\examples{
+string <- "United States"
+messy_string(string)
+}
