@@ -6,7 +6,7 @@
 #'
 #' @return A vector of strings
 #' @examples
-#' string <- "United States'
+#' string <- "United States"
 #' messy_string(string)
 #' @export
 #' @importFrom rlang .data
