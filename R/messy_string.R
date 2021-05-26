@@ -58,9 +58,28 @@ messy_string <- function(string) {
 
   final_phrases <- dplyr::distinct(rbind(first_letter_cap, full_word_cap), .keep_all = T)
 
+  if (stringr::str_detect(string, "'")) {
+
+    to_add1 <- apostrophe_rm(final_phrases)
+
+    final_phrases <- rbind(final_phrases, to_add1)
+
+  }
+
+  if (stringr::str_detect(string, "-")) {
+
+    to_add2 <- hyphen_rm(final_phrases)
+
+    final_phrases <- rbind(final_phrases, to_add2)
+
+  }
+
 
   # turn our dataframe into a vector where each object is a string
 
   unlist(final_phrases, use.names = F)
 
 }
+
+
+
