@@ -11,9 +11,15 @@
 #' @export
 #' @importFrom rlang .data
 
-messy_string <- function(string) {
+new_strings <- function(string) {
 
   # separate string into its individual words
+
+  if (stringr::str_detect(string, "-")) {
+
+    string <- stringr::str_replace_all(string, "-", " - ")
+
+  }
 
   words <- stringr::str_to_lower(stringr::str_split(string, " ")[[1]])
 
@@ -66,14 +72,31 @@ messy_string <- function(string) {
 
   }
 
-  if (stringr::str_detect(string, "-")) {
 
-    to_add2 <- hyphen_rm(final_phrases)
+  if (stringr::str_detect(string, "\\.")) {
+
+    to_add2 <- period_rm(final_phrases)
 
     final_phrases <- rbind(final_phrases, to_add2)
 
   }
 
+  if (stringr::str_detect(string, ",")) {
+
+
+    to_add3 <- comma_rm(final_phrases)
+
+    final_phrases <- rbind(final_phrases, to_add3)
+
+  }
+
+  if (stringr::str_detect(string, "!")) {
+
+    to_add4 <- exclamation_rm(final_phrases)
+
+    final_phrases <- rbind(final_phrases, to_add4)
+
+  }
 
   # turn our dataframe into a vector where each object is a string
 
@@ -82,4 +105,27 @@ messy_string <- function(string) {
 }
 
 
+messy_string <- function(string) {
+
+  if (stringr::str_detect(string, "-")) {
+
+    string2 <- stringr::str_replace_all(string, "-", " ")
+
+    final_phrases <- new_strings(string2)
+    final_phrases2 <- new_strings(string2)
+
+    final_phrases2 <- final_phrases2 %>%
+      purrr::map_chr(~stringr::str_replace_all(.x, " ", "-"))
+
+    c(final_phrases, final_phrases2)
+
+  } else {
+
+    new_strings(string)
+
+  }
+
+
+
+}
 

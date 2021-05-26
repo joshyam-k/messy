@@ -27,14 +27,48 @@ apostrophe_rm <- function(df) {
 
 }
 
-hyphen_rm <- function(df) {
+
+
+period_rm <- function(df) {
 
   new <- df
 
   for (i in 1:nrow(new)) {
     for (j in 1:ncol(new)) {
 
-      new[i, j] <- stringr::str_remove_all(new[[i,j]], "-")
+      new[i, j] <- stringr::str_remove_all(new[[i,j]], "\\.")
+
+    }
+  }
+
+  new
+
+}
+
+comma_rm <- function(df) {
+
+  new <- df
+
+  for (i in 1:nrow(new)) {
+    for (j in 1:ncol(new)) {
+
+      new[i, j] <- stringr::str_remove_all(new[[i,j]], ",")
+
+    }
+  }
+
+  new
+
+}
+
+exclamation_rm <- function(df) {
+
+  new <- df
+
+  for (i in 1:nrow(new)) {
+    for (j in 1:ncol(new)) {
+
+      new[i, j] <- stringr::str_remove_all(new[[i,j]], "!")
 
     }
   }
