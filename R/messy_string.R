@@ -117,15 +117,15 @@ messy_string <- function(string) {
     final_phrases2 <- final_phrases2 %>%
       purrr::map_chr(~stringr::str_replace_all(.x, " ", "-"))
 
-    c(final_phrases, final_phrases2)
+    ret <- c(final_phrases, final_phrases2)
 
   } else {
 
-    new_strings(string)
+    ret <- new_strings(string)
 
   }
 
-
+  ret
 
 }
 
