@@ -109,12 +109,22 @@ messy_string <- function(string) {
 
   if (stringr::str_detect(string, "-")) {
 
+    loc <- stringr::str_locate(string, "-")[[1]]
+
     string2 <- stringr::str_replace_all(string, "-", " ")
 
     final_phrases <- new_strings(string2)
     final_phrases2 <- new_strings(string2)
 
-    final_phrases2 <- purrr::map_chr(final_phrases2, ~stringr::str_replace_all(.x, " ", "-"))
+    hyphen_add <- function(x, loc) {
+
+      stringr::str_sub(x, loc, loc) <- "-"; x
+
+    }
+
+    final_phrases2 <- purrr::map_chr(final_phrases2, ~hyphen_add(.x, loc))
+
+    #stringr::str_replace(.x, , "-")
 
     ret <- c(final_phrases, final_phrases2)
 
