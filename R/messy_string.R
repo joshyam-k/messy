@@ -109,24 +109,52 @@ messy_string <- function(string) {
 
   if (stringr::str_detect(string, "-")) {
 
-    loc <- stringr::str_locate(string, "-")[[1]]
+    ##
+    locs <- stringr::str_locate_all(string, "-")[[1]][ ,1]
+    hyphen_bits <- binary_strings(length(locs))
+    hyphen_options <- 2**(length(locs))
+    ##
 
     string2 <- stringr::str_replace_all(string, "-", " ")
 
-    final_phrases <- new_strings(string2)
-    final_phrases2 <- new_strings(string2)
+    #final_phrases <- new_strings(string2)
+    #final_phrases2 <- new_strings(string2)
 
-    hyphen_add <- function(x, loc) {
+    item_add <- function(x, loc, item) {
 
-      stringr::str_sub(x, loc, loc) <- "-"; x
+      stringr::str_sub(x, loc, loc) <- item; x
+
+    }
+    ##
+    final_hyphens <- c()
+    for (i in 1:hyphen_options) {
+
+      final_phrases_piece <- new_strings(string2)
+
+      for (col in 1:length(locs)) {
+
+        if (hyphen_bits[i, col] == "0") {
+
+          final_phrases_piece <- purrr::map_chr(final_phrases_piece, ~item_add(.x, locs[col], " "))
+          #item_add(final_phrases_piece, locs[col], " ")
+
+        } else {
+
+          final_phrases_piece <- purrr::map_chr(final_phrases_piece, ~item_add(.x, locs[col], "-"))
+          item_add(final_phrases_piece, locs[col], "-")
+
+        }
+
+      }
+
+      final_hyphens <- c(final_hyphens, final_phrases_piece)
+
 
     }
 
-    final_phrases2 <- purrr::map_chr(final_phrases2, ~hyphen_add(.x, loc))
 
-    #stringr::str_replace(.x, , "-")
 
-    ret <- c(final_phrases, final_phrases2)
+    ret <- final_hyphens
 
   } else {
 
